@@ -6,23 +6,30 @@ class SearchBar extends Component {
         return (
             <Form>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Label>
+                        search a topic across any of the sites listed below
+                    </Form.Label>
+                    <div className="row">
+                        <div className="col-md-6 col-sm-6 col-lg-6">
+                            <Form.Control
+                                type="email"
+                                placeholder="Compare a topic"
+                            />
+                        </div>
+                        <div className="col-md-6 col-sm-6 col-lg-6">
+                            <Button>Search</Button>
+                        </div>
+                    </div>
+
                     <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        choose which sites you would like to compare. Default is
+                        USA Headlines
                     </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
             </Form>
         );
     }
