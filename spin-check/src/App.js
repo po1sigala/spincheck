@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "./components/Nav";
 import Home from "./pages/Home";
 import Trending from "./pages/Trending";
+import Search from "./pages/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/trending" component={Trending} />
                 <Route exact path="/Home" component={Home} />
+                <Route exact path="/Search" component={Search} />
             </Switch>
         </Router>
     );
