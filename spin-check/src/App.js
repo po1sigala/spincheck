@@ -1,35 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import Nav from "./components/Nav";
-import Article from "./components/Article";
-import SearchBar from "./components/searchBar";
-import SitesList from "./components/SiteList";
-import Jumbotron from "./components/Jumbotron";
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <div className="row" id="navRow">
-                    <Nav />
-                </div>
-                <div>
-                    <Jumbotron />
-                </div>
-                <div className="row" id="contentRow">
-                    <div className="infocolumn col-md-6">
-                        <div>
-                            <SearchBar />
-                        </div>
-                        <div>
-                            <SitesList />
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <Article> </Article>
-                    </div>
-                </div>
+import Home from "./pages/Home";
+import Trending from "./pages/Trending";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+function App() {
+    return (
+        <Router>
+            <div className="row" id="navRow">
+                <Nav />
             </div>
-        );
-    }
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/trending" component={Trending} />
+                <Route exact path="/Home" component={Home} />
+            </Switch>
+        </Router>
+    );
 }
 
 export default App;

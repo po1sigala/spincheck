@@ -6,8 +6,8 @@ class Jumbo extends Component {
         return (
             <Jumbotron fluid>
                 <Container>
-                    <h1>Spin Check </h1>
-                    <p>See what people are saying across the board</p>
+                    <h1>{this.props.title}</h1>
+                    <p>{this.props.subHead}</p>
                 </Container>
             </Jumbotron>
         );
