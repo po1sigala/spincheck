@@ -8,7 +8,8 @@ import API from "../Utils/API";
 class Search extends Component {
     state = {
         inputText: "",
-        sites: []
+        sites: [],
+        responses: []
     };
     searchNews = event => {
         const sitesToSearch = this.state.sites.length;
@@ -20,8 +21,14 @@ class Search extends Component {
 
                 this.state.sites.map(siteKey => {
                     API.searchNews(query, siteKey).then(res => {
-                        const results = res.data.articles;
-                        this.setState({ [siteKey]: results });
+                        const currentState = this.state.responses;
+
+                        const results = { [siteKey]: res.data.articles };
+                        const updated = [];
+                        updated.push(results);
+                        currentState.push(updated);
+
+                        this.setState({ responses: currentState });
                     });
                 });
 
@@ -70,6 +77,7 @@ class Search extends Component {
                         <div>
                             <SitesList
                                 handleCheckbox={this.handleCheckbox}
+                                //manually adding in sites but later can use map from a json of sites
                                 sites={[
                                     ["ABC News", "abc-news"],
                                     ["Vice News", "vice-news"]
@@ -78,7 +86,7 @@ class Search extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <Article> </Article>
+                        <Article articles={this.state.responses}></Article>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,12 @@ import Button from "react-bootstrap/Button";
 
 class Article extends Component {
     render() {
+        console.log(`the responses im working with are`);
+        console.log(this.props.articles);
+
         return (
+            //will replace this card. i want article to return rows with sliding elements that are cards with each response from that source
+
             <Card style={{ width: "18rem" }}>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
