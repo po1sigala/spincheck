@@ -9,6 +9,7 @@ class Search extends Component {
     state = {
         inputText: "",
         sites: [],
+        numCards: 1,
         responses: []
     };
     searchNews = event => {
@@ -16,7 +17,6 @@ class Search extends Component {
         const query = this.state.inputText;
         switch (sitesToSearch > 0) {
             case true:
-                console.log(`searching sites ${this.state.sites}`);
                 //run regular search with sites
 
                 this.state.sites.map(siteKey => {
@@ -35,7 +35,7 @@ class Search extends Component {
                 break;
             case false:
                 //we need to search top headlines usa
-                console.log(`searching top headlines usa`);
+
                 API.searchHeadline(query, "us").then(res => {
                     console.log(res);
                 });
@@ -54,6 +54,19 @@ class Search extends Component {
         this.setState({ sites: checkedArry });
     };
     render() {
+        const APIResponses = this.state.responses;
+        let count = 0;
+        const carousels = APIResponses.map(setOfArticles => {
+            count++;
+            return (
+                <Article
+                    key={count}
+                    articles={this.state.responses}
+                    numCards={this.state.numCards}
+                ></Article>
+            );
+        });
+
         return (
             <div>
                 <div>
@@ -86,7 +99,7 @@ class Search extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <Article articles={this.state.responses}></Article>
+                        <div>{carousels}</div>
                     </div>
                 </div>
             </div>
