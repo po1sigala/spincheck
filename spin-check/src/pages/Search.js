@@ -5,20 +5,35 @@ import SearchBar from "../components/searchBar";
 import SitesList from "../components/SiteList";
 import Jumbotron from "../components/Jumbotron";
 import API from "../Utils/API";
-//THIS PAGE MUST BE UPDATED SO SEARCHNEWS RETURNS MORE THAN ONE ARTICLE
 class Search extends Component {
     state = {
         inputText: "",
-        sites: ["abc-news", "vice-news"]
+        sites: []
     };
     searchNews = event => {
-        const query = this.state.inputText;
-        this.state.sites.map(siteKey => {
-            API.searchNews(query, siteKey).then(res => {
-                const results = res.data.articles;
-                this.setState({ [siteKey]: results });
-            });
-        });
+        const sitesToSearch = this.state.sites.length;
+        switch (sitesToSearch > 0) {
+            case true:
+                console.log(`searching sites ${this.state.sites}`);
+                //run regular search with sites
+                const query = this.state.inputText;
+                this.state.sites.map(siteKey => {
+                    API.searchNews(query, siteKey).then(res => {
+                        const results = res.data.articles;
+                        this.setState({ [siteKey]: results });
+                    });
+                });
+
+                break;
+            case false:
+                //we need to search top headlines usa
+                console.log(`searching top headlines usa`);
+                break;
+            default:
+                console.log(
+                    ` something is wrong with the sites array it is ${this.state.sites}`
+                );
+        }
     };
     handleInput = input => {
         this.setState({ inputText: input });
