@@ -5,19 +5,24 @@ import SearchBar from "../components/searchBar";
 import SitesList from "../components/SiteList";
 import Jumbotron from "../components/Jumbotron";
 import API from "../Utils/API";
-
+//THIS PAGE MUST BE UPDATED SO SEARCHNEWS RETURNS MORE THAN ONE ARTICLE
 class Search extends Component {
     state = {
-        inputText: ""
+        inputText: "",
+        articles: []
     };
-    searchNews = event => {
+    searchNews = (event, numArticles) => {
+        //REMOVE THIS LATER----------------------------------------
+        numArticles = 1;
+        //REMOVE THIS LATER--------------------------------
         const query = this.state.inputText;
         console.log(`searching news 
         \nSearching for ${this.state.inputText}
         \ngot back..
       `);
         API.searchNews(query).then(res => {
-            console.log(res.data.articles);
+            const results = res.data.articles;
+            this.setState({ articles: results });
         });
     };
     handleInput = input => {
