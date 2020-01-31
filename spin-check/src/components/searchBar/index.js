@@ -20,7 +20,6 @@ class SearchBar extends Component {
                         onChange={this.handleChange}
                         placeholder="Compare a topic"
                         type="text"
-                        // value={this.state.value}
                     />
                     <Form.Text className="text-muted">
                         choose which sites you would like to compare. Default is

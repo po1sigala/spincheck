@@ -23,7 +23,10 @@ class Search extends Component {
     handleInput = input => {
         this.setState({ inputText: input });
     };
-    handleCheckbox = event => {};
+    handleCheckbox = checkedArry => {
+        console.log(`the sites checked is ${checkedArry}`);
+        this.setState({ sites: checkedArry });
+    };
     render() {
         return (
             <div>
@@ -46,7 +49,13 @@ class Search extends Component {
                             </div>
                         </div>
                         <div>
-                            <SitesList />
+                            <SitesList
+                                handleCheckbox={this.handleCheckbox}
+                                sites={[
+                                    ["ABC News", "abc-news"],
+                                    ["Vice News", "vice-news"]
+                                ]}
+                            />
                         </div>
                     </div>
                     <div className="col-md-6">
