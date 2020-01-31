@@ -4,14 +4,21 @@ import Article from "../components/Article";
 import SearchBar from "../components/searchBar";
 import SitesList from "../components/SiteList";
 import Jumbotron from "../components/Jumbotron";
+import API from "../Utils/API";
+
 class Search extends Component {
     state = {
         inputText: ""
     };
     searchNews = event => {
-        console.log(`searching news
+        const query = this.state.inputText;
+        console.log(`searching news 
         \nSearching for ${this.state.inputText}
+        \ngot back..
       `);
+        API.searchNews(query).then(res => {
+            console.log(res.data.articles);
+        });
     };
     handleInput = input => {
         this.setState({ inputText: input });

@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Trending from "./pages/Trending";
 import Search from "./pages/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+require("dotenv").config();
+
 function App() {
     return (
         <Router>
