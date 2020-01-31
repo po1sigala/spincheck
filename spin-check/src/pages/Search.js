@@ -9,25 +9,21 @@ import API from "../Utils/API";
 class Search extends Component {
     state = {
         inputText: "",
-        articles: []
+        sites: ["abc-news", "vice-news"]
     };
-    searchNews = (event, numArticles) => {
-        //REMOVE THIS LATER----------------------------------------
-        numArticles = 1;
-        //REMOVE THIS LATER--------------------------------
+    searchNews = event => {
         const query = this.state.inputText;
-        console.log(`searching news 
-        \nSearching for ${this.state.inputText}
-        \ngot back..
-      `);
-        API.searchNews(query).then(res => {
-            const results = res.data.articles;
-            this.setState({ articles: results });
+        this.state.sites.map(siteKey => {
+            API.searchNews(query, siteKey).then(res => {
+                const results = res.data.articles;
+                this.setState({ [siteKey]: results });
+            });
         });
     };
     handleInput = input => {
         this.setState({ inputText: input });
     };
+    handleCheckbox = event => {};
     render() {
         return (
             <div>

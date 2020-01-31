@@ -7,9 +7,6 @@ export default {
 
     //serach a needs to know the query and the sites youre looking for
     searchNews: function(query, scope) {
-        //REMOVE THIS LATER for testing only
-        scope = "abc-news";
-        //REMOVE ABOVE LATER
         return axios.get(
             `${this.searchNewsURL}/everything?q=${query}&sources=${scope}&${this.NewsAPIKey}`
         );
