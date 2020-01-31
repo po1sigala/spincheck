@@ -12,11 +12,12 @@ class Search extends Component {
     };
     searchNews = event => {
         const sitesToSearch = this.state.sites.length;
+        const query = this.state.inputText;
         switch (sitesToSearch > 0) {
             case true:
                 console.log(`searching sites ${this.state.sites}`);
                 //run regular search with sites
-                const query = this.state.inputText;
+
                 this.state.sites.map(siteKey => {
                     API.searchNews(query, siteKey).then(res => {
                         const results = res.data.articles;
@@ -28,6 +29,9 @@ class Search extends Component {
             case false:
                 //we need to search top headlines usa
                 console.log(`searching top headlines usa`);
+                API.searchHeadline(query, "us").then(res => {
+                    console.log(res);
+                });
                 break;
             default:
                 console.log(
