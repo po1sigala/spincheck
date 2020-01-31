@@ -10,25 +10,24 @@ class Search extends Component {
         inputText: "",
         sites: [],
         numCards: 1,
+
         responses: []
     };
     searchNews = event => {
+        //need to clear my carosels
         const sitesToSearch = this.state.sites.length;
         const query = this.state.inputText;
+        const newState = [];
         switch (sitesToSearch > 0) {
             case true:
                 //run regular search with sites
 
                 this.state.sites.map(siteKey => {
                     API.searchNews(query, siteKey).then(res => {
-                        const currentState = this.state.responses;
-
                         const results = { [siteKey]: res.data.articles };
-                        const updated = [];
-                        updated.push(results);
-                        currentState.push(updated);
+                        newState.push(results);
 
-                        this.setState({ responses: currentState });
+                        this.setState({ responses: newState });
                     });
                 });
 
@@ -37,7 +36,8 @@ class Search extends Component {
                 //we need to search top headlines usa
 
                 API.searchHeadline(query, "us").then(res => {
-                    console.log(res);
+                    const headlines = [res.data];
+                    this.setState({ responses: headlines });
                 });
                 break;
             default:
