@@ -24,7 +24,7 @@ class Search extends Component {
 
                 this.state.sites.map(siteKey => {
                     API.searchNews(query, siteKey).then(res => {
-                        const results = { [siteKey]: res.data.articles };
+                        const results = { articles: res.data.articles };
                         newState.push(results);
 
                         this.setState({ responses: newState });
@@ -55,14 +55,19 @@ class Search extends Component {
     };
     render() {
         const APIResponses = this.state.responses;
-        let count = 0;
+
+        let i = 0;
         const carousels = APIResponses.map(setOfArticles => {
-            count++;
+            i++;
+            console.log(`creating an article carosel with`);
+            console.log(setOfArticles);
+
             return (
                 <Article
-                    key={count}
-                    articles={this.state.responses}
+                    key={i}
+                    articles={setOfArticles.articles}
                     numCards={this.state.numCards}
+                    id={this.state.sites[i - 1]}
                 ></Article>
             );
         });
