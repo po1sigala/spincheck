@@ -6,40 +6,50 @@ class Article extends Component {
     state = {
         numCards: this.props.numCards
     };
-    linkToSite = event => {
-        console.log(event.target);
-    };
+
     render() {
         const toDisplay = [];
+        let maximum = 0;
         let i = this.props.numCards;
+        const keys = Object.keys(this.props.articles);
+        keys.map(key => {
+            maximum++;
+        });
+        console.log(`articles are ${this.props.articles}`);
+        if (i > maximum) {
+            console.log(`max is ${maximum} i is ${i}`);
+            i = maximum;
+        }
+        console.log(`i is ${i}`);
         for (i; i > 0; i--) {
-            toDisplay.push(this.props.articles[i]);
-            console.log(
-                ` looping through articles returning: ${this.props.articles[i]}`
-            );
+            console.log(`i is ${i}`);
+            toDisplay.push(this.props.articles[i - 1]);
+            console.log(` looping through articles returning:`);
             console.log(this.props.articles[i]);
         }
         const carouselPages = toDisplay.map(source => {
+            let site = source.source.name || "no source";
+            let title = source.title || "no source";
+            let author = source.author || "no source";
+            let href = source.url || "no link";
+            let src = source.urlToImage || "no url";
+            let description = source.description || "no source";
             return (
                 <Carousel.Item key={toDisplay.indexOf(source)}>
                     <h1>
-                        <Badge variant="secondary">{source.source.name}</Badge>
+                        <Badge variant="secondary">{site}</Badge>
                     </h1>
                     <img
                         className="d-block w-100"
-                        src={source.urlToImage}
+                        src={src}
                         alt="First slide"
                     />
                     <Carousel.Caption>
-                        <h3>{source.title}</h3>
+                        <h3>{title}</h3>
                         <p>
-                            {source.author} reports: {source.description}
+                            {author} reports: {description}
                         </p>
-                        <Button
-                            variant="link"
-                            href={source.url}
-                            target="_blank"
-                        >
+                        <Button variant="link" href={href} target="_blank">
                             Read More{" "}
                         </Button>
                     </Carousel.Caption>

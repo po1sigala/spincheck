@@ -8,6 +8,9 @@ class SearchBar extends Component {
     handleChange = event => {
         this.props.handleInput(event.target.value);
     };
+    handleSelect = event => {
+        this.props.handleSelection(event.target.value);
+    };
     render() {
         const toDisplay = [];
         let i = parseInt(this.props.numInputs);
@@ -32,7 +35,11 @@ class SearchBar extends Component {
                             {this.props.subtitle}
                         </Form.Text>
                     </Form.Group>
-                    <Form.Group as={Col} controlId="formGridState">
+                    <Form.Group
+                        as={Col}
+                        controlId="formGridState"
+                        onChange={this.handleSelect}
+                    >
                         <Form.Label>Get back up to 10 articles</Form.Label>
                         <Form.Control as="select">{dropdownitems}</Form.Control>
                     </Form.Group>

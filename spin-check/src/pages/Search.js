@@ -10,7 +10,7 @@ class Search extends Component {
         inputText: "",
         sites: [],
         numCards: 1,
-
+        maximum: 0,
         responses: []
     };
     searchNews = event => {
@@ -21,7 +21,7 @@ class Search extends Component {
         switch (sitesToSearch > 0) {
             case true:
                 //run regular search with sites
-
+                console.log("running normal search");
                 this.state.sites.map(siteKey => {
                     API.searchNews(query, siteKey).then(res => {
                         const results = { articles: res.data.articles };
@@ -34,7 +34,7 @@ class Search extends Component {
                 break;
             case false:
                 //we need to search top headlines usa
-
+                console.log("searchin headlines");
                 API.searchHeadline(query, "us").then(res => {
                     const headlines = [res.data];
                     this.setState({ responses: headlines });
@@ -49,6 +49,9 @@ class Search extends Component {
     handleInput = input => {
         this.setState({ inputText: input });
     };
+    handleSelection = selection => {
+        this.setState({ numCards: selection });
+    };
     handleCheckbox = checkedArry => {
         console.log(`the sites checked is ${checkedArry}`);
         this.setState({ sites: checkedArry });
@@ -57,10 +60,9 @@ class Search extends Component {
         const APIResponses = this.state.responses;
 
         let i = 0;
+
         const carousels = APIResponses.map(setOfArticles => {
             i++;
-            console.log(`creating an article carosel with`);
-            console.log(setOfArticles);
 
             return (
                 <Article
@@ -68,6 +70,7 @@ class Search extends Component {
                     articles={setOfArticles.articles}
                     numCards={this.state.numCards}
                     id={this.state.sites[i - 1]}
+                    maximum={this.state.maximum}
                 ></Article>
             );
         });
@@ -81,10 +84,11 @@ class Search extends Component {
                     />
                 </div>
                 <div className="row" id="contentRow">
-                    <div className="infocolumn col-md-6">
+                    <div className="infocolumn col-md-3">
                         <div className="col-md-12 col-sm-12 col-lg-12">
                             <SearchBar
                                 numInputs="10"
+                                handleSelection={this.handleSelection}
                                 typeOfSearch="search a topic across a variety of sources"
                                 handleInput={this.handleInput}
                                 subtitle="choose which sites you would like to compare. Default is USA Headlines"
@@ -103,7 +107,7 @@ class Search extends Component {
                             />
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-9">
                         <div>{carousels}</div>
                     </div>
                 </div>
