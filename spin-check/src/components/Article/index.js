@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import Badge from "react-bootstrap/Badge";
 import Carousel from "react-bootstrap/Carousel";
+import Button from "react-bootstrap/Button";
 class Article extends Component {
     state = {
         numCards: this.props.numCards
+    };
+    linkToSite = event => {
+        console.log(event.target);
     };
     render() {
         const toDisplay = [];
@@ -31,6 +35,13 @@ class Article extends Component {
                         <p>
                             {source.author} reports: {source.description}
                         </p>
+                        <Button
+                            variant="link"
+                            href={source.url}
+                            target="_blank"
+                        >
+                            Read More{" "}
+                        </Button>
                     </Carousel.Caption>
                 </Carousel.Item>
             );

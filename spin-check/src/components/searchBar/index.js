@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-
+import Col from "react-bootstrap/Col";
 class SearchBar extends Component {
     handleSubmit = event => {
         event.preventDefault();
@@ -9,23 +9,34 @@ class SearchBar extends Component {
         this.props.handleInput(event.target.value);
     };
     render() {
+        const toDisplay = [];
+        let i = parseInt(this.props.numInputs);
+        for (i; i > 0; i--) {
+            toDisplay.push(i);
+        }
+        const dropdownitems = toDisplay.reverse().map(number => {
+            return <option key={number}>{number}</option>;
+        });
         return (
             <Form onSubmit={this.handleSubmit}>
-                <Form.Group>
-                    <Form.Label>
-                        search a topic across any of the sites listed below
-                    </Form.Label>
+                <Form.Row>
+                    <Form.Group>
+                        <Form.Label>{this.props.typeOfSearch}</Form.Label>
 
-                    <Form.Control
-                        onChange={this.handleChange}
-                        placeholder="Compare a topic"
-                        type="text"
-                    />
-                    <Form.Text className="text-muted">
-                        choose which sites you would like to compare. Default is
-                        USA Headlines
-                    </Form.Text>
-                </Form.Group>
+                        <Form.Control
+                            onChange={this.handleChange}
+                            placeholder="Compare a topic"
+                            type="text"
+                        />
+                        <Form.Text className="text-muted">
+                            {this.props.subtitle}
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="formGridState">
+                        <Form.Label>Get back up to 10 articles</Form.Label>
+                        <Form.Control as="select">{dropdownitems}</Form.Control>
+                    </Form.Group>
+                </Form.Row>
             </Form>
         );
     }

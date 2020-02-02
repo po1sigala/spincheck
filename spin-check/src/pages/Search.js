@@ -82,15 +82,15 @@ class Search extends Component {
                 </div>
                 <div className="row" id="contentRow">
                     <div className="infocolumn col-md-6">
-                        <div>
-                            <div className="col-md-6 col-sm-6 col-lg-6">
-                                <SearchBar handleInput={this.handleInput} />
-                            </div>
-                            <div className="col-md-6 col-sm-6 col-lg-6">
-                                <Button onClick={this.searchNews}>
-                                    Search
-                                </Button>
-                            </div>
+                        <div className="col-md-12 col-sm-12 col-lg-12">
+                            <SearchBar
+                                numInputs="10"
+                                typeOfSearch="search a topic across a variety of sources"
+                                handleInput={this.handleInput}
+                                subtitle="choose which sites you would like to compare. Default is USA Headlines"
+                            />
+
+                            <Button onClick={this.searchNews}>Search</Button>
                         </div>
                         <div>
                             <SitesList
