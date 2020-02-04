@@ -23,29 +23,27 @@ class SiteList extends Component {
                 console.log("something went rerribly wrongS");
         }
     };
+
     render() {
-        return (
-            <Form>
-                {["checkbox"].map(type => (
-                    <div key={`inline-${type}`} className="mb-3">
-                        <Form.Check
-                            inline
-                            label={this.props.sites[0][0]}
-                            type={type}
-                            id={this.props.sites[0][1]}
-                            onChange={this.handleChange}
-                        />
-                        <Form.Check
-                            inline
-                            label={this.props.sites[1][0]}
-                            type={type}
-                            id={this.props.sites[1][1]}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                ))}
-            </Form>
-        );
+        let i = 0;
+
+        const selections = this.props.sites.map(source => {
+            console.log(`adding source`);
+            console.log(source[0]);
+            i++;
+            return (
+                <div key={`checkbox-inline-${i}`} className="mb-3">
+                    <Form.Check
+                        inline
+                        label={source[0]}
+                        type="checkbox"
+                        id={source[1]}
+                        onChange={this.handleChange}
+                    />
+                </div>
+            );
+        });
+        return <Form>{selections}</Form>;
     }
 }
 

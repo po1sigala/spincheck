@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Badge from "react-bootstrap/Badge";
 import Carousel from "react-bootstrap/Carousel";
 import Button from "react-bootstrap/Button";
+import defaultImage from "../../assets/images/black.jpg";
 class Article extends Component {
     state = {
         numCards: this.props.numCards
@@ -32,18 +33,14 @@ class Article extends Component {
             let title = source.title || "no source";
             let author = source.author || "no source";
             let href = source.url || "no link";
-            let src = source.urlToImage || "no url";
+            let src = source.urlToImage || defaultImage;
             let description = source.description || "no source";
             return (
                 <Carousel.Item key={toDisplay.indexOf(source)}>
                     <h1>
                         <Badge variant="secondary">{site}</Badge>
                     </h1>
-                    <img
-                        className="d-block w-100"
-                        src={src}
-                        alt="First slide"
-                    />
+                    <img className="d-block w-100" src={src} alt="no image" />
                     <Carousel.Caption>
                         <h3>{title}</h3>
                         <p>

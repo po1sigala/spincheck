@@ -5,7 +5,7 @@ import Article from "../components/Article";
 import Jumbotron from "../components/Jumbotron";
 import API from "../Utils/API";
 import SiteList from "../components/SiteList";
-
+import Countries from "../Utils/sources";
 class Trending extends Component {
     //default to returning 5 trending articles
     state = {
@@ -52,6 +52,7 @@ class Trending extends Component {
                 ></Article>
             );
         });
+
         return (
             <div>
                 <div>
@@ -64,10 +65,7 @@ class Trending extends Component {
                     <div className="infocolumn col-md-3 col-sm-3 col-lg-3">
                         The World's top stories
                         <SiteList
-                            sites={[
-                                ["United States", "us"],
-                                ["Great Britain", "gb"]
-                            ]}
+                            sites={Countries}
                             handleCheckbox={this.handleCheckbox}
                             onChange={this.searchHeadlines}
                         ></SiteList>
