@@ -19,12 +19,6 @@ class Trending extends Component {
                         <div>
                             <SearchBar />
                         </div>
-                        <div>
-                            <SitesList />
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <Article> </Article>
                     </div>
                 </div>
             </div>

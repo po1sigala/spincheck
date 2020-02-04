@@ -42,6 +42,10 @@ class SearchBar extends Component {
                     >
                         <Form.Label>Get back up to 10 articles</Form.Label>
                         <Form.Control as="select">{dropdownitems}</Form.Control>
+                        <Form.Text className="text-muted">
+                            there may be fewer responses available than your
+                            selection
+                        </Form.Text>
                     </Form.Group>
                 </Form.Row>
             </Form>
