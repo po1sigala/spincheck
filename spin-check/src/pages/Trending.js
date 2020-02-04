@@ -4,6 +4,7 @@ import Article from "../components/Article";
 
 import Jumbotron from "../components/Jumbotron";
 import API from "../Utils/API";
+import SiteList from "../components/SiteList";
 
 class Trending extends Component {
     //default to returning 5 trending articles
@@ -12,23 +13,29 @@ class Trending extends Component {
         countries: ["us"],
         responses: []
     };
-    componentDidMount = () => {
+    searchHeadlines = country => {
+        console.log("searching");
         const newState = [];
         this.state.countries.map(country => {
             API.TrendingHeadlines(country).then(res => {
                 const results = res.data.articles;
-                console.log("results are");
-                console.log(results);
+
                 newState.push(results);
                 this.setState({ responses: newState });
             });
         });
         console.log(this.state.articles);
     };
+    componentDidMount = () => {
+        this.searchHeadlines();
+    };
+
+    handleCheckbox = event => {
+        this.setState({ countries: event });
+        this.searchHeadlines();
+    };
     render() {
         const APIResponses = this.state.responses;
-        console.log("responses are ");
-        console.log(APIResponses);
 
         let i = 0;
 
@@ -55,7 +62,15 @@ class Trending extends Component {
                 </div>
                 <div className="row" id="contentRow">
                     <div className="infocolumn col-md-3 col-sm-3 col-lg-3">
-                        TOP 5 USA
+                        The World's top stories
+                        <SiteList
+                            sites={[
+                                ["United States", "us"],
+                                ["Great Britain", "gb"]
+                            ]}
+                            handleCheckbox={this.handleCheckbox}
+                            onChange={this.searchHeadlines}
+                        ></SiteList>
                     </div>
                     <div className="col-md-9 col-lg-9 col-sm-9">
                         {carousels}
