@@ -1,0 +1,26 @@
+const sources = [
+    ["Argentina", "ar"],
+    ["Australia", "au"],
+    ["Belgium", "be"],
+    ["Brazil", "Bulgaria"],
+    ["Canada", "ca"],
+    ["China", "cn"],
+    ["Colombia", "co"],
+    ["Cuba", "cu"],
+    ["Czech Republic", "cz"],
+    ["Egypt", "eg"],
+    ["United States", "us"],
+    ["Great Britain", "gb"],
+    ["Mexico", "mx"],
+    ["Japan", "jp"],
+    ["Israel", "il"],
+    ["Hong Kong", "hk"],
+    ["Switzerland", "ch"],
+    ["Sweden", "se"],
+    ["Russia", "ru"],
+    ["Italy", "it"],
+    ["India", "in"],
+    ["Germany", "de"],
+    ["France", "fr"]
+];
+export default sources;
