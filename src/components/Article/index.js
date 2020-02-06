@@ -14,7 +14,7 @@ class Article extends Component {
         let i = this.props.numCards;
         const keys = Object.keys(this.props.articles);
         keys.map(key => {
-            maximum++;
+            return maximum++;
         });
         console.log(`articles are ${this.props.articles}`);
         if (i > maximum) {
@@ -40,7 +40,11 @@ class Article extends Component {
                     <h1>
                         <Badge variant="secondary">{site}</Badge>
                     </h1>
-                    <img className="d-block w-100" src={src} alt="no image" />
+                    <img
+                        className="d-block w-100"
+                        src={src}
+                        alt="news article"
+                    />
                     <Carousel.Caption>
                         <h3>{title}</h3>
                         <p>

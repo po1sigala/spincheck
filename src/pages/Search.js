@@ -23,7 +23,7 @@ class Search extends Component {
                 //run regular search with sites
                 console.log("running normal search");
                 this.state.sites.map(siteKey => {
-                    API.searchNews(query, siteKey).then(res => {
+                    return API.searchNews(query, siteKey).then(res => {
                         const results = { articles: res.data.articles };
                         newState.push(results);
 

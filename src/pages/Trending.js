@@ -17,7 +17,7 @@ class Trending extends Component {
         console.log("searching");
         const newState = [];
         this.state.countries.map(country => {
-            API.TrendingHeadlines(country).then(res => {
+            return API.TrendingHeadlines(country).then(res => {
                 const results = res.data.articles;
 
                 newState.push(results);

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
-import Article from "../components/Article";
 import SearchBar from "../components/searchBar";
-import SitesList from "../components/SiteList";
+
 import Jumbotron from "../components/Jumbotron";
 class Home extends Component {
     render() {
